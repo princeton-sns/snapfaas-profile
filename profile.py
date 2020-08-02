@@ -11,7 +11,6 @@ import geni.portal as portal
 import geni.rspec.pg as pg
 # Import the Emulab specific extensions.
 import geni.rspec.emulab as emulab
-import geni.rspec
 
 # Create a portal object,
 pc = portal.Context()
@@ -46,8 +45,8 @@ for i in range(0, 2):
     nodes.append(node)
     pass
 
-node.addService(rspec.Install(url="https://github.com/princeton-sns/snapfaas-profile/blob/master/setup.sh", path="/local"))
-node.addService(rspec.Execute(shell="bash", command="/local/setup.sh"))
+node.addService(pg.Install(url="https://github.com/princeton-sns/snapfaas-profile/blob/master/setup.sh", path="/local"))
+node.addService(pg.Execute(shell="bash", command="/local/setup.sh"))
 
 # Create the link
 nodeA = nodes[0]
