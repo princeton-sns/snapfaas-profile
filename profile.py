@@ -11,6 +11,7 @@ import geni.portal as portal
 import geni.rspec.pg as pg
 # Import the Emulab specific extensions.
 import geni.rspec.emulab as emulab
+import geni.rspec
 
 # Create a portal object,
 pc = portal.Context()
@@ -22,24 +23,31 @@ pc.defineParameter("phystype1",  "Optional physical type for node1",
                    portal.ParameterType.STRING, "")
 pc.defineParameter("phystype2",  "Optional physical type for node2",
                    portal.ParameterType.STRING, "")
+pc.defineParameter("disk_image1",  "Optional disk image for node1",
+                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16")
+pc.defineParameter("disk_image2",  "Optional disk image for node2",
+                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16")
 params = pc.bindParameters()
 
 # Create all the nodes.
 nodes = []
 phystypes = []
+disk_images = []
 phystypes.append(params.phystype1)
 phystypes.append(params.phystype2)
+disk_images.append(params.disk_image1)
+disk_images.append(params.disk_image2)
 for i in range(0, 2):
     node = request.RawPC("node%d" % (i + 1))
     if phystypes[i] != "":
         node.hardware_type = phystypes[i]
+        node.disk_image = disk_images[i]
         pass
     nodes.append(node)
     pass
 
-# node.disk_image = 'urn:publicid:IDN+clemson.cloudlab.us+image+praxis-PG0:firecracker'
-nodes[0].disk_image = 'urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16'
-nodes[1].disk_image = 'urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16'
+node.addService(rspec.Install(url="https://github.com/princeton-sns/snapfaas-profile/blob/master/setup.sh", path="/local"))
+node.addService(rspec.Execute(shell="bash", command="/local/setup.sh"))
 
 # Create the link
 nodeA = nodes[0]
