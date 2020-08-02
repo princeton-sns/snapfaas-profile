@@ -26,10 +26,13 @@ params = pc.bindParameters()
 
 # Create all the nodes.
 nodes = []
+phystypes = []
+phystypes.append(params.phystype1)
+phystypes.append(params.phystype2)
 for i in range(0, 2):
     node = request.RawPC("node%d" % (i + 1))
     if params.phystype != "":
-        node.hardware_type = params.phystype
+        node.hardware_type = phystypes[i]
         pass
     nodes.append(node)
     pass
