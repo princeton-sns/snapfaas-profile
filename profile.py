@@ -45,8 +45,7 @@ for i in range(0, 2):
     nodes.append(node)
     pass
 
-node.addService(pg.Install(url="https://github.com/princeton-sns/snapfaas-profile/blob/master/setup.tar.gz", path="/local"))
-node.addService(pg.Execute(shell="bash", command="/local/setup.sh"))
+node.addService(pg.Execute(shell="bash", command="/local/repository/setup.sh"))
 
 # Create the link
 nodeA = nodes[0]
