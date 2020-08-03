@@ -40,12 +40,12 @@ for i in range(0, 2):
     node = request.RawPC("node%d" % (i + 1))
     if phystypes[i] != "":
         node.hardware_type = phystypes[i]
-        node.disk_image = disk_images[i]
+    node.disk_image = disk_images[i]
+    node.addService(pg.Execute(shell="bash", command="/local/repository/setup.sh"))
         pass
     nodes.append(node)
     pass
 
-node.addService(pg.Execute(shell="bash", command="/local/repository/setup.sh"))
 
 # Create the link
 nodeA = nodes[0]
