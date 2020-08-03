@@ -42,10 +42,7 @@ for i in range(0, 2):
         node.hardware_type = phystypes[i]
     node.disk_image = disk_images[i]
     node.addService(pg.Execute(shell="bash", command="/local/repository/setup.sh"))
-        pass
     nodes.append(node)
-    pass
-
 
 # Create the link
 nodeA = nodes[0]
