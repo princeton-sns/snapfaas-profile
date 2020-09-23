@@ -10,7 +10,7 @@ if [ $(uname -a | awk '{print $2}' | awk -F. '{print $1}') == 'node1' ]; then
     sudo mkdir /ssd
     sudo mkfs.ext4 /dev/$SSDDEV
     sudo mount /dev/$SSDDEV /ssd
-    sudo chown -R $(uname -un):$(uname -gn) /ssd
+    sudo chown -R $(id -un):$(id -gn) /ssd
 fi
 
 # node 2
