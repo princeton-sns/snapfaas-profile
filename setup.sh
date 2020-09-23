@@ -31,7 +31,7 @@ if [ $(uname -a | awk '{print $2}' | awk -F. '{print $1}') == 'node2' ]; then
     for fname in $(ls .); do
         uuid=$(curl -H 'Content-Type: application/json' $COUCHDBURL/_uuids | awk -F\" '{print $4}')
         extension=$(echo $fname | awk -F. '{print $2}')
-        curl -X PUT $COUCHDBURL/images/$uuid/$fname \
+        curl -X PUT $COUCHDBURL/audios/$uuid/$fname \
             --data-binary @$fname \
             -H 'Content-Type:audio/'$extension
     done
