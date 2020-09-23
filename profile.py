@@ -23,9 +23,9 @@ pc.defineParameter("phystype1",  "Optional physical type for node1",
 pc.defineParameter("phystype2",  "Optional physical type for node2",
                    portal.ParameterType.STRING, "")
 pc.defineParameter("disk_image1",  "Optional disk image for node1",
-                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16")
+                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:snapfaas")
 pc.defineParameter("disk_image2",  "Optional disk image for node2",
-                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:mongodb4.4-Ubuntu16")
+                   portal.ParameterType.IMAGE, "urn:publicid:IDN+wisc.cloudlab.us+image+praxis-PG0:snapfaas-couchdb")
 params = pc.bindParameters()
 
 # Create all the nodes.
